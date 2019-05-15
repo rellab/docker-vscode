@@ -1,14 +1,19 @@
+# docker-vscode-base
+
+## example
+
 docker run --rm -it \
   -h c9host \
-  -p 80:80 \
   -p 8181:8181 \
-  -e PM2PORT=80 \
-  -e PM2PASSWORD=pm2 \
-  -e CSUSER=c9user \
-  -e CSUID=1000 \
-  -e CSPASSWORD=c9user \
-  -e CSHOME=/home/c9user \
-  -e CSGROUP=c9user \
-  -e CSGID=1000 \
+  -e C9USER=c9user \
+  -e C9UID=1000 \
+  -e C9PASSWORD=c9password \
+  -e C9HOME=/home/c9user \
+  -e C9GROUP=c9user \
+  -e C9GID=1000 \
   -t cs
-# docker-vscode-base
+
+```
+http://c9host:8181
+```
+with password c9password

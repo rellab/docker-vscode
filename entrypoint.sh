@@ -1,0 +1,5 @@
+#!/bin/bash
+
+## add csadmin
+csuseradd.sh $C9USER $C9PASSWORD $C9UID $C9GROUP $C9GID $C9HOME $C9GRANT_SUDO
+csstart.sh $C9USER $C9PASSWORD $C9HOME $C9PORT
