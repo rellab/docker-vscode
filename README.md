@@ -3,17 +3,17 @@
 ## example
 
 docker run --rm -it \
-  -h c9host \
+  -h hostname \
   -p 8181:8181 \
-  -e C9USER=c9user \
-  -e C9UID=1000 \
-  -e C9PASSWORD=c9password \
-  -e C9HOME=/home/c9user \
-  -e C9GROUP=c9user \
-  -e C9GID=1000 \
-  -t cs
+  -e CODE_USER=codeuser \
+  -e CODE_UID=1000 \
+  -e CODE_PASSWORD=password \
+  -e CODE_HOME=/home/codeuser \
+  -e CODE_GROUP=codeuser \
+  -e CODE_GID=1000 \
+  -t okamumu/vscode-base
 
 ```
-http://c9host:8181
+http://hostname:8181
 ```
-with password c9password
+with password codepassword
