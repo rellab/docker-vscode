@@ -16,4 +16,4 @@ docker run --rm -it \
 ```
 http://hostname:8181
 ```
-with password codepassword
+with password `password`
