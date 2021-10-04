@@ -40,8 +40,12 @@ ENV VSCODE_HOME       /home/vscode
 ENV VSCODE_UID        1000
 ENV VSCODE_GID        1000
 ENV VSCODE_GRANT_SUDO nopass
+ENV VSCODE_PORT       8192
 
-EXPOSE 22
+RUN groupadd -f -g $VSCODE_GID $VSCODE_GROUP &&\
+    useradd -d $VSCODE_HOME -u $VSCODE_UID -g $VSCODE_GID -s /bin/bash $VSCODE_USER
+
+EXPOSE 8192
 VOLUME /home/vscode
 
 ENTRYPOINT ["/entrypoint.sh"]

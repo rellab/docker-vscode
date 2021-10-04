@@ -1,16 +1,11 @@
 #!/bin/bash
 
-groupadd -f -g $VSCODE_GID $VSCODE_GROUP || exit 1
-if [ $VSCODE_PASSWORD = "no" ]; then
-  useradd -d $VSCODE_HOME -u $VSCODE_UID -g $VSCODE_GID -s /bin/bash $VSCODE_USER || exit 1
-else
-  useradd -d $VSCODE_HOME -u $VSCODE_UID -g $VSCODE_GID -s /bin/bash -p `echo "$VSCODE_PASSWORD" | mkpasswd -s -m sha-512` $VSCODE_USER || exit 1
-fi
+echo "rstudio:$VSCODE_PASSWORD" | chpasswd
 
 if [ $VSCODE_GRANT_SUDO = "yes" ]; then
-  echo "$VSCODE_USER ALL=(ALL) ALL" >> /etc/sudoers.d/$VSCODE_USER
+  echo "rstudio ALL=(ALL) ALL" >> /etc/sudoers.d/rstudio
 elif [ $VSCODE_GRANT_SUDO = "nopass" ]; then
-  echo "$VSCODE_USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$VSCODE_USER
+  echo "rstudio ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/rstudio
 fi
 
 mkdir -p $VSCODE_HOME
