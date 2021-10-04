@@ -1,18 +1,12 @@
-.PHONY: all build push
+# Makefile
 
-all: build push
+IMAGE=rel/vscode
 
-build:
-	docker build . -t okamumu/vscode-base
+build: build-cuda11
 
-push:
-	docker push okamumu/vscode-base
+build-cuda11: Dockerfile-cuda11
+	docker build -t ${IMAGE}:cuda11 -f Dockerfile-cuda11 .
 
 clean:
-	docker rmi okamumu/vscode-base
+	docker images | grep ${IMAGE} | awk '{print $$3}' | xargs docker rmi
 
-testrun:
-	docker run --rm -it -h hostname -p 8181:8181 -e CODE_USER=codeuser -e CODE_UID=1000 -e CODE_PASSWORD=password -e CODE_HOME=/home/codeuser -e CODE_GROUP=codeuser -e CODE_GID=1000 -t okamumu/vscode-base
-
-testlogin:
-	docker run --rm -it -h hostname -p 8181:8181 -e CODE_USER=codeuser -e CODE_UID=1000 -e CODE_PASSWORD=password -e CODE_HOME=/home/codeuser -e CODE_GROUP=codeuser -e CODE_GID=1000 -t okamumu/vscode-base /bin/bash
