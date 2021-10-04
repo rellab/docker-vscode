@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "vscode:$VSCODE_PASSWORD" | chpasswd
+echo "$VSCODE_USER:$VSCODE_PASSWORD" | chpasswd
 
 if [ $VSCODE_GRANT_SUDO = "yes" ]; then
   echo "rstudio ALL=(ALL) ALL" >> /etc/sudoers.d/rstudio
