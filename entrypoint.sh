@@ -3,9 +3,9 @@
 echo "$VSCODE_USER:$VSCODE_PASSWORD" | chpasswd
 
 if [ $VSCODE_GRANT_SUDO = "yes" ]; then
-  echo "rstudio ALL=(ALL) ALL" >> /etc/sudoers.d/rstudio
+  echo "rstudio ALL=(ALL) ALL" >> /etc/sudoers.d/$VSCODE_USER
 elif [ $VSCODE_GRANT_SUDO = "nopass" ]; then
-  echo "rstudio ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/rstudio
+  echo "rstudio ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$VSCODE_USER
 fi
 
 mkdir -p $VSCODE_HOME
